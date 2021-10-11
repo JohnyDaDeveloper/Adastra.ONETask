@@ -6,6 +6,9 @@
         <item name="colorOnToolbar">?colorOnPrimary</item>
 
         <item name="android:statusBarColor" tools:targetApi="l">?colorToolbar</item>
+
+        <item name="drawerArrowStyle">@style/Theme.AdastraONETask.ArrowStyle</item>
+        <item name="overlapAnchor">false</item>
     </style>
 
     <style name="Theme.AdastraONETask.Default" parent="Theme.AdastraONETask.Base">
@@ -28,5 +31,9 @@
 
     <style name="TextAppearance.AdastraONETask.Small" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="Theme.AdastraONETask.ArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">?colorOnToolbar</item>
     </style>
 </resources>
