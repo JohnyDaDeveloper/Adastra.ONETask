@@ -21,6 +21,11 @@
         <item name="colorOnSecondary">@color/black</item>
     </style>
 
+    <style name="Theme.AdastraONETask.SplashTheme" parent="Theme.AdastraONETask.Default">
+        <item name="android:windowBackground">@drawable/splashscreen_icon</item>
+        <item name="android:navigationBarColor">@color/light_colorPrimary</item>
+    </style>
+
     <style name="TextAppearance.AdastraONETask.Large" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?colorOnSurface</item>
     </style>
