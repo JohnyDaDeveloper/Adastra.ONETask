@@ -38,7 +38,7 @@ public class RandomActivityFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmnetRandomActivityBinding.inflate(inflater);
-        binding.randomActivityButton.setOnClickListener(v -> viewModel.getActivityService().fetchRandomActivity());
+        binding.randomActivityButton.setOnClickListener(v -> viewModel.getActivityService().getRandomActivityFromAPI());
         binding.accessibilityProgress.setMax(MAX_PROGRESS);
         setupObservers();
         return binding.getRoot();

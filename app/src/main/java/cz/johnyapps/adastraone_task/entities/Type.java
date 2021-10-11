@@ -32,8 +32,6 @@ public enum Type {
 
     @NonNull
     public static Type fromString(@Nullable String value) {
-        Logger.d("TAG", "fromString: %s", value);
-
         if (value == null) {
             return getDefault();
         }

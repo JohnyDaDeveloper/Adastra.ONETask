@@ -9,7 +9,7 @@ import cz.johnyapps.adastraone_task.entities.Activity;
 
 @Dao
 public interface ActivityDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Activity activity);
 
     @Query("SELECT * FROM Activity WHERE `key` = :key")

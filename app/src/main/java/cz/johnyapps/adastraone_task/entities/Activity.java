@@ -2,6 +2,7 @@ package cz.johnyapps.adastraone_task.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -16,6 +17,9 @@ public class Activity {
     @NonNull
     @PrimaryKey
     private String key;
+
+    @Ignore
+    private boolean online = false;
 
     public Activity(String activity,
                     float accessibility,
@@ -88,5 +92,13 @@ public class Activity {
 
     public void setKey(@NonNull String key) {
         this.key = key;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public boolean isOnline() {
+        return online;
     }
 }

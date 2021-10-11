@@ -23,7 +23,7 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         activityService = new ActivityService(this);
-        activityService.fetchRandomActivity();
+        activityService.getLastActivityFromDatabase();
     }
 
     @NonNull
