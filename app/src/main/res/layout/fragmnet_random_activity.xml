@@ -21,11 +21,11 @@
                 android:id="@+id/typeImageView"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:minHeight="48dp"
-                android:foregroundGravity="center"
-                android:visibility="gone"
                 android:layout_marginEnd="?spacingDefault"
                 android:layout_marginBottom="?spacingDefault"
+                android:foregroundGravity="center"
+                android:minHeight="48dp"
+                android:visibility="gone"
                 app:srcCompat="@drawable/type_unknown" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -33,23 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="?spacingDefault"
+                android:gravity="center_vertical"
+                android:minLines="2"
                 android:text="@string/activityNameTextView_default"
                 android:textAppearance="@style/TextAppearance.AdastraONETask.Large" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/accessibilityProgressLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/accessibilityProgress"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small"
-            android:text="@string/accessibilityProgressLabel" />
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/accessibilityProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/participantsTextView"
@@ -59,26 +47,39 @@
             android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/linkTextView"
+            android:id="@+id/accessibilityProgressLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault"
-            android:autoLink="web"
+            android:labelFor="@id/accessibilityProgress"
+            android:text="@string/accessibilityProgressLabel"
             android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/accessibilityProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="?spacingDefault" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/priceProgressLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:labelFor="@id/priceProgress"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small"
-            android:text="@string/priceProgressLabel" />
+            android:text="@string/priceProgressLabel"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/priceProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?spacingDefault" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/linkTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton

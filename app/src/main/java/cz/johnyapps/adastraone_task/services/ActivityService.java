@@ -36,7 +36,7 @@ public class ActivityService {
         boredAPIService = retrofit.create(BoredAPIService.class);
     }
 
-    public void getLastActivityFromDatabase() {
+    public boolean getLastActivityFromDatabase() {
         String lastKey = SharedPreferencesUtils.getLastActivityKey(mainViewModel.getApplication());
 
         if (lastKey != null) {
@@ -64,7 +64,10 @@ public class ActivityService {
                 }
             });
             task.execute(lastKey);
+            return false;
         }
+
+        return true;
     }
 
     public void getRandomActivityFromAPI() {

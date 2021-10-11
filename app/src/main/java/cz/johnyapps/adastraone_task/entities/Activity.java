@@ -13,6 +13,7 @@ public class Activity {
     private Integer participants;
     private Float price;
     private String link;
+    private boolean liked = false;
 
     @NonNull
     @PrimaryKey
@@ -94,11 +95,19 @@ public class Activity {
         this.key = key;
     }
 
+    public boolean isOnline() {
+        return online;
+    }
+
     public void setOnline(boolean online) {
         this.online = online;
     }
 
-    public boolean isOnline() {
-        return online;
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
     }
 }

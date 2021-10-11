@@ -75,7 +75,8 @@ public class RandomActivityFragment extends Fragment {
             binding.activityNameTextView.setText(activity.getActivity());
             binding.typeImageView.setImageResource(Type.fromString(activity.getType()).getDrawableId());
             binding.typeImageView.setVisibility(View.VISIBLE);
-            binding.participantsTextView.setText(String.valueOf(activity.getParticipants()));
+            binding.participantsTextView.setText(requireContext().getString(R.string.participantsTextView,
+                    activity.getParticipants()));
             binding.linkTextView.setText(activity.getLink());
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
