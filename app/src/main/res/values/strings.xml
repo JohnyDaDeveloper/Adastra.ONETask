@@ -7,4 +7,6 @@
 
     <string name="activityNameTextView_default">No activity loaded</string>
     <string name="randomActivityButton">Get random activity</string>
+    <string name="accessibilityProgressLabel">Accessibility:</string>
+    <string name="priceProgressLabel">Price:</string>
 </resources>

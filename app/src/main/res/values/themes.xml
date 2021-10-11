@@ -18,7 +18,7 @@
         <item name="colorOnSecondary">@color/black</item>
     </style>
 
-    <style name="TextAppearance.AdastraONETask.Large" parent="TextAppearance.MaterialComponents.Headline4">
+    <style name="TextAppearance.AdastraONETask.Large" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">?colorOnSurface</item>
     </style>
 

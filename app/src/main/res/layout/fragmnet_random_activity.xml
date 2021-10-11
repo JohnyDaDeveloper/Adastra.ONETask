@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="?spacingDefault">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -11,21 +12,41 @@
         android:layout_marginBottom="?spacingDefault"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/activityNameTextView"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault"
-            android:text="@string/activityNameTextView_default" />
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/typeImageView"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:minHeight="48dp"
+                android:foregroundGravity="center"
+                android:visibility="gone"
+                android:layout_marginEnd="?spacingDefault"
+                android:layout_marginBottom="?spacingDefault"
+                app:srcCompat="@drawable/type_unknown" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/activityNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?spacingDefault"
+                android:text="@string/activityNameTextView_default"
+                android:textAppearance="@style/TextAppearance.AdastraONETask.Large" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/accessibilityTextView"
+            android:id="@+id/accessibilityProgressLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
+            android:labelFor="@id/accessibilityProgress"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small"
+            android:text="@string/accessibilityProgressLabel" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/typeTextView"
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/accessibilityProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?spacingDefault" />
@@ -34,16 +55,30 @@
             android:id="@+id/participantsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
+            android:layout_marginBottom="?spacingDefault"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/linkTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
+            android:layout_marginBottom="?spacingDefault"
+            android:autoLink="web"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/priceProgressLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/priceProgress"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small"
+            android:text="@string/priceProgressLabel" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/priceProgress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?spacingDefault" />
@@ -51,13 +86,16 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keyTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/randomActivityButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:textAllCaps="false"
+        android:padding="?spacingDefault"
         android:text="@string/randomActivityButton" />
 </RelativeLayout>
