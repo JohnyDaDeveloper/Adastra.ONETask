@@ -32,6 +32,8 @@ public class ActivityService {
     }
 
     public void fetchRandomActivity() {
+        mainViewModel.setFetchingActivity(true);
+
         Call<Activity> call = boredAPIService.getRandomActivity();
         call.enqueue(new Callback<Activity>() {
             @Override
@@ -46,12 +48,16 @@ public class ActivityService {
                     Logger.w(TAG, "onResponse: Error: %s", response.message());
                     mainViewModel.setRandomActivity(null);
                 }
+
+                mainViewModel.setFetchingActivity(false);
             }
 
             @Override
             public void onFailure(@NonNull Call<Activity> call, @NonNull Throwable t) {
                 Logger.e(TAG, "onFailure: ", t);
                 mainViewModel.setRandomActivity(null);
+
+                mainViewModel.setFetchingActivity(false);
             }
         });
     }
