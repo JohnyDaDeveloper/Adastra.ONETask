@@ -77,7 +77,6 @@ public class RandomActivityFragment extends Fragment {
             binding.typeImageView.setVisibility(View.VISIBLE);
             binding.participantsTextView.setText(String.valueOf(activity.getParticipants()));
             binding.linkTextView.setText(activity.getLink());
-            binding.keyTextView.setText(activity.getKey());
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.accessibilityProgress.setProgress(toProgress(activity.getAccessibility()), true);
@@ -92,8 +91,6 @@ public class RandomActivityFragment extends Fragment {
             binding.typeImageView.setVisibility(View.GONE);
             binding.participantsTextView.setText(null);
             binding.linkTextView.setText(null);
-            binding.keyTextView.setText(null);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.accessibilityProgress.setProgress(0, true);
                 binding.priceProgress.setProgress(0, true);

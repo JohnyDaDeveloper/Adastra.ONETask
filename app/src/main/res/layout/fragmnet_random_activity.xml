@@ -64,9 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="?spacingDefault"
             android:autoLink="web"
-            android:background="?selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -82,12 +79,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="?spacingDefault" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/keyTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
