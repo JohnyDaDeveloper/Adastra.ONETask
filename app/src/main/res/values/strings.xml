@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Adastra.ONE - Task</string>
+
+    <string name="fragment_random_activity">Random activity</string>
+
+    <string name="menu_header_text">Menu</string>
+
+    <string name="activityNameTextView_default">No activity loaded</string>
+</resources>

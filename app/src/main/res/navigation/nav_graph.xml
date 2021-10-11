@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/randomActivityFragment">
+
+    <fragment android:id="@+id/randomActivityFragment"
+        android:name="cz.johnyapps.adastraone_task.fragments.RandomActivityFragment"
+        android:label="@string/fragment_random_activity"
+        tools:layout="@layout/fragmnet_random_activity" />
+</navigation>

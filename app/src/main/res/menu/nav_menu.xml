@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/randomActivityFragment"
+        android:title="@string/fragment_random_activity"
+        android:icon="@drawable/fragment_random" />
+</menu>
