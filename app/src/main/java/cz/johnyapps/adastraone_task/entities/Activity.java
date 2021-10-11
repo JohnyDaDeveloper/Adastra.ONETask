@@ -1,5 +1,10 @@
 package cz.johnyapps.adastraone_task.entities;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Activity {
     private String activity;
     private Float accessibility;
@@ -7,6 +12,9 @@ public class Activity {
     private Integer participants;
     private Float price;
     private String link;
+
+    @NonNull
+    @PrimaryKey
     private String key;
 
     public Activity(String activity,
@@ -15,7 +23,7 @@ public class Activity {
                     int participants,
                     float price,
                     String link,
-                    String key) {
+                    @NonNull String key) {
         this.activity = activity;
         this.accessibility = accessibility;
         this.type = type;
@@ -73,11 +81,12 @@ public class Activity {
         this.link = link;
     }
 
+    @NonNull
     public String getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(@NonNull String key) {
         this.key = key;
     }
 }

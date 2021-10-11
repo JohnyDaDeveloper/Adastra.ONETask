@@ -2,6 +2,7 @@ package cz.johnyapps.adastraone_task.services;
 
 import androidx.annotation.NonNull;
 
+import cz.johnyapps.adastraone_task.database.tasks.InsertActivityTask;
 import cz.johnyapps.adastraone_task.tools.Logger;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 import cz.johnyapps.adastraone_task.entities.Activity;
@@ -41,6 +42,7 @@ public class ActivityService {
                 if (response.isSuccessful() && response.body() != null) {
                     Activity activity = response.body();
                     mainViewModel.setRandomActivity(activity);
+                    insertActivityToDatabase(activity);
                 } else if (response.body() == null) {
                     Logger.w(TAG, "onResponse: Body is null");
                     mainViewModel.setRandomActivity(null);
@@ -60,5 +62,10 @@ public class ActivityService {
                 mainViewModel.setFetchingActivity(false);
             }
         });
+    }
+
+    public void insertActivityToDatabase(@NonNull Activity activity) {
+        InsertActivityTask task = new InsertActivityTask(mainViewModel.getApplication());
+        task.execute(activity);
     }
 }
