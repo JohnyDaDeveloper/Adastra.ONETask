@@ -2,85 +2,90 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="?spacingDefault">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/randomActivityButton"
-        android:layout_marginBottom="?spacingDefault"
-        android:orientation="vertical">
+        android:layout_above="@id/randomActivityButton">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="?spacingDefault"
+            android:padding="?spacingDefault"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/typeImageView"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="?spacingDefault"
-                android:layout_marginBottom="?spacingDefault"
-                android:foregroundGravity="center"
-                android:minHeight="48dp"
-                android:visibility="gone"
-                app:srcCompat="@drawable/type_unknown" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/typeImageView"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="?spacingDefault"
+                    android:layout_marginBottom="?spacingDefault"
+                    android:foregroundGravity="center"
+                    android:minHeight="48dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/type_unknown" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/activityNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="?spacingDefault"
+                    android:gravity="center_vertical"
+                    android:minLines="2"
+                    android:text="@string/activityNameTextView_default"
+                    android:textAppearance="@style/TextAppearance.AdastraONETask.Large" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/activityNameTextView"
+                android:id="@+id/participantsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="?spacingDefault"
-                android:gravity="center_vertical"
-                android:minLines="2"
-                android:text="@string/activityNameTextView_default"
-                android:textAppearance="@style/TextAppearance.AdastraONETask.Large" />
+                android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/accessibilityProgressLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/accessibilityProgress"
+                android:text="@string/accessibilityProgressLabel"
+                android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/accessibilityProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?spacingDefault" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/priceProgressLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/priceProgress"
+                android:text="@string/priceProgressLabel"
+                android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/priceProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?spacingDefault" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/linkTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/participantsTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/accessibilityProgressLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/accessibilityProgress"
-            android:text="@string/accessibilityProgressLabel"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/accessibilityProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/priceProgressLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/priceProgress"
-            android:text="@string/priceProgressLabel"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/priceProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/linkTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/randomActivityButton"
@@ -89,5 +94,6 @@
         android:layout_alignParentBottom="true"
         android:textAllCaps="false"
         android:padding="?spacingDefault"
+        android:layout_margin="?spacingDefault"
         android:text="@string/randomActivityButton" />
 </RelativeLayout>
