@@ -55,7 +55,7 @@ public class ActivityFragment extends BaseFragment<FragmentActivityBinding, Main
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.activity_fragment_options_menu, menu);
 
-        Activity activity = requireViewModel().getRandomActivity().getValue();
+        Activity activity = requireViewModel().getSelectedActivity().getValue();
         MenuItem likeActivityMenuItem = menu.findItem(R.id.likeActivityMenuItem);
         MenuItem unlikeActivityMenuItem = menu.findItem(R.id.unlikeActivityMenuItem);
 
@@ -98,7 +98,7 @@ public class ActivityFragment extends BaseFragment<FragmentActivityBinding, Main
     }
 
     private void setupObservers() {
-        requireViewModel().getRandomActivity().observe(getViewLifecycleOwner(), activity -> {
+        requireViewModel().getSelectedActivity().observe(getViewLifecycleOwner(), activity -> {
             fillActivity(activity);
             requireActivity().invalidateOptionsMenu();
         });

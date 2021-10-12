@@ -107,11 +107,11 @@ public class ActivityService {
             getActivityFromDatabase(lastKey, new BaseDatabaseTask.OnCompleteListener<Activity>() {
                 @Override
                 public void onSuccess(@Nullable Activity activity) {
-                    Activity loaded = mainViewModel.getRandomActivity().getValue();
+                    Activity loaded = mainViewModel.getSelectedActivity().getValue();
 
                     if (activity != null) {
                         if (loaded == null) {
-                            mainViewModel.setRandomActivity(activity);
+                            mainViewModel.setSelectedActivity(activity);
                         }
                     }
                 }
@@ -151,11 +151,11 @@ public class ActivityService {
                     getDatabasedActivity(activity);
                 } else if (response.body() == null) {
                     Logger.w(TAG, "onResponse: Body is null");
-                    mainViewModel.setRandomActivity(null);
+                    mainViewModel.setSelectedActivity(null);
                     mainViewModel.setFetchingActivity(false);
                 } else {
                     Logger.w(TAG, "onResponse: Error: %s", response.message());
-                    mainViewModel.setRandomActivity(null);
+                    mainViewModel.setSelectedActivity(null);
                     mainViewModel.setFetchingActivity(false);
                 }
             }
@@ -166,7 +166,7 @@ public class ActivityService {
                     getRandomActivityFromDatabase();
                 } else {
                     Logger.e(TAG, "onFailure: ", t);
-                    mainViewModel.setRandomActivity(null);
+                    mainViewModel.setSelectedActivity(null);
                     mainViewModel.setFetchingActivity(false);
                 }
             }
@@ -181,7 +181,7 @@ public class ActivityService {
             @Override
             public void onSuccess(@Nullable Activity activity) {
                 if (activity != null) {
-                    mainViewModel.setRandomActivity(activity);
+                    mainViewModel.setSelectedActivity(activity);
                 } else {
                     getConnectToInternetActivity();
                 }
@@ -189,7 +189,7 @@ public class ActivityService {
 
             @Override
             public void onFailure(@Nullable Exception e) {
-                mainViewModel.setRandomActivity(null);
+                mainViewModel.setSelectedActivity(null);
             }
 
             @Override
@@ -197,7 +197,7 @@ public class ActivityService {
                 mainViewModel.setFetchingActivity(false);
             }
         });
-        task.execute(mainViewModel.getRandomActivity().getValue());
+        task.execute(mainViewModel.getSelectedActivity().getValue());
     }
 
     private void getConnectToInternetActivity() {
@@ -211,7 +211,7 @@ public class ActivityService {
                 "",
                 NO_INTERNET_KEY);
 
-        mainViewModel.setRandomActivity(activity);
+        mainViewModel.setSelectedActivity(activity);
     }
 
     private void getDatabasedActivity(@NonNull Activity activityFromAPI) {
@@ -219,17 +219,17 @@ public class ActivityService {
             @Override
             public void onSuccess(@Nullable Activity activity) {
                 if (activity != null) {
-                    mainViewModel.setRandomActivity(activity);
+                    mainViewModel.setSelectedActivity(activity);
                     insertActivityToDatabase(activity);
                 } else {
-                    mainViewModel.setRandomActivity(activityFromAPI);
+                    mainViewModel.setSelectedActivity(activityFromAPI);
                     insertActivityToDatabase(activityFromAPI);
                 }
             }
 
             @Override
             public void onFailure(@Nullable Exception e) {
-                mainViewModel.setRandomActivity(activityFromAPI);
+                mainViewModel.setSelectedActivity(activityFromAPI);
                 insertActivityToDatabase(activityFromAPI);
             }
 

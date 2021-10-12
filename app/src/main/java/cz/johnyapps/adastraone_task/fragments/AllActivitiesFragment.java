@@ -6,18 +6,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.List;
-
 import cz.johnyapps.adastraone_task.adapters.ActivityAdapter;
 import cz.johnyapps.adastraone_task.databinding.FragmentAllActivitiesBinding;
-import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 
-public class AllActivitiesFragment extends ActivityListFragment<FragmentAllActivitiesBinding, MainViewModel> {
+public class AllActivitiesFragment extends ActivityListFragment<FragmentAllActivitiesBinding> {
 
     @NonNull
     @Override

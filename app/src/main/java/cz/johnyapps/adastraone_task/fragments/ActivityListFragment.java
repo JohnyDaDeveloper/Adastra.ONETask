@@ -4,17 +4,18 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewbinding.ViewBinding;
 
 import java.util.List;
 
 import cz.johnyapps.adastraone_task.adapters.ActivityAdapter;
 import cz.johnyapps.adastraone_task.entities.Activity;
+import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 
-public abstract class ActivityListFragment<VB extends ViewBinding, VM extends AndroidViewModel> extends BaseFragment<VB, VM> {
+public abstract class ActivityListFragment<VB extends ViewBinding> extends BaseFragment<VB, MainViewModel> {
     @Nullable
     private ActivityAdapter adapter;
 
@@ -34,9 +35,15 @@ public abstract class ActivityListFragment<VB extends ViewBinding, VM extends An
 
         if (adapter == null) {
             adapter = new ActivityAdapter();
+            adapter.setOnItemClickListener(this::activityClicked);
         }
 
         setupActivitiesRecycler(binding, adapter, context);
+    }
+
+    private void activityClicked(@NonNull Activity activity) {
+        requireViewModel().setSelectedActivity(activity);
+        NavHostFragment.findNavController(this).navigateUp();
     }
 
     protected abstract void setupActivitiesRecycler(@NonNull VB binding, @NonNull ActivityAdapter adapter, @NonNull Context context);

@@ -18,7 +18,7 @@ public class MainViewModel extends AndroidViewModel {
     private final ActivityService activityService;
 
     @NonNull
-    private final MutableLiveData<Activity> randomActivity = new MutableLiveData<>();
+    private final MutableLiveData<Activity> selectedActivity = new MutableLiveData<>();
     @NonNull
     private final MutableLiveData<Boolean> fetchingActivity = new MutableLiveData<>();
     @NonNull
@@ -38,12 +38,12 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     @NonNull
-    public LiveData<Activity> getRandomActivity() {
-        return randomActivity;
+    public LiveData<Activity> getSelectedActivity() {
+        return selectedActivity;
     }
 
-    public void setRandomActivity(@Nullable Activity randomActivity) {
-        this.randomActivity.setValue(randomActivity);
+    public void setSelectedActivity(@Nullable Activity selectedActivity) {
+        this.selectedActivity.setValue(selectedActivity);
     }
 
     @NonNull

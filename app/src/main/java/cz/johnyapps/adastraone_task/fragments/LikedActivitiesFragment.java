@@ -14,7 +14,7 @@ import cz.johnyapps.adastraone_task.adapters.ActivityAdapter;
 import cz.johnyapps.adastraone_task.databinding.FragmentLikedActivitiesBinding;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 
-public class LikedActivitiesFragment extends ActivityListFragment<FragmentLikedActivitiesBinding, MainViewModel> {
+public class LikedActivitiesFragment extends ActivityListFragment<FragmentLikedActivitiesBinding> {
 
     @NonNull
     @Override
