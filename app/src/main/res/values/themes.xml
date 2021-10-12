@@ -1,11 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.AdastraONETask.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
         <item name="spacingDefault">10dp</item>
 
         <item name="colorToolbar">?colorSurface</item>
         <item name="colorOnToolbar">?colorOnSurface</item>
         <item name="android:statusBarColor" tools:targetApi="l">?colorToolbar</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <item name="colorTypeBusywork">@color/colorTypeBusywork</item>
+        <item name="colorTypeCharity">@color/colorTypeCharity</item>
+        <item name="colorTypeCooking">@color/colorTypeCooking</item>
+        <item name="colorTypeEducational">@color/colorTypeEducational</item>
+        <item name="colorTypeMusic">@color/colorTypeMusic</item>
+        <item name="colorTypeRecreational">@color/colorTypeRecreational</item>
+        <item name="colorTypeRelaxation">@color/colorTypeRelaxation</item>
+        <item name="colorTypeSocial">?colorControlNormal</item>
 
         <item name="drawerArrowStyle">@style/Theme.AdastraONETask.ArrowStyle</item>
         <item name="overlapAnchor">false</item>

@@ -8,4 +8,12 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorTypeBusywork">#6A6A6A</color>
+    <color name="colorTypeCharity">#8A0000</color>
+    <color name="colorTypeCooking">#6A6A6A</color>
+    <color name="colorTypeEducational">#0F68B5</color>
+    <color name="colorTypeMusic">#8C871D</color>
+    <color name="colorTypeRecreational">#108116</color>
+    <color name="colorTypeRelaxation">#8E610B</color>
 </resources>

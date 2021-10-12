@@ -5,4 +5,13 @@
     <attr name="colorToolbar" format="color" />
     <attr name="colorOnToolbar" format="color" />
     <attr name="colorDivider" format="color" />
+
+    <attr name="colorTypeBusywork" format="color" />
+    <attr name="colorTypeCharity" format="color" />
+    <attr name="colorTypeCooking" format="color" />
+    <attr name="colorTypeEducational" format="color" />
+    <attr name="colorTypeMusic" format="color" />
+    <attr name="colorTypeRecreational" format="color" />
+    <attr name="colorTypeRelaxation" format="color" />
+    <attr name="colorTypeSocial" format="color" />
 </resources>
