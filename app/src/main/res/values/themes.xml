@@ -2,9 +2,10 @@
     <style name="Theme.AdastraONETask.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="spacingDefault">10dp</item>
 
-        <item name="colorToolbar">?colorPrimary</item>
-        <item name="colorOnToolbar">?colorOnPrimary</item>
+        <item name="colorToolbar">?colorSurface</item>
+        <item name="colorOnToolbar">?colorOnSurface</item>
         <item name="android:statusBarColor" tools:targetApi="l">?colorToolbar</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <item name="drawerArrowStyle">@style/Theme.AdastraONETask.ArrowStyle</item>
         <item name="overlapAnchor">false</item>
@@ -25,6 +26,7 @@
     <style name="Theme.AdastraONETask.SplashTheme" parent="Theme.AdastraONETask.Default">
         <item name="android:windowBackground">@drawable/splashscreen_icon</item>
         <item name="android:navigationBarColor">@color/light_colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/light_colorPrimary</item>
     </style>
 
     <style name="TextAppearance.AdastraONETask.Large" parent="TextAppearance.MaterialComponents.Headline5">
