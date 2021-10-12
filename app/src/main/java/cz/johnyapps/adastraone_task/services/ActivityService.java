@@ -11,6 +11,7 @@ import cz.johnyapps.adastraone_task.R;
 import cz.johnyapps.adastraone_task.database.tasks.BaseDatabaseTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetAllActivitiesTask;
+import cz.johnyapps.adastraone_task.database.tasks.GetRandomActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.InsertActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.UpdateActivityTask;
 import cz.johnyapps.adastraone_task.entities.Type;
@@ -135,7 +136,7 @@ public class ActivityService {
             @Override
             public void onFailure(@NonNull Call<Activity> call, @NonNull Throwable t) {
                 if (t instanceof UnknownHostException) {
-                    getConnectToInternetActivity();
+                    getRandomActivityFromDatabase();
                 } else {
                     Logger.e(TAG, "onFailure: ", t);
                     mainViewModel.setRandomActivity(null);
@@ -145,6 +146,32 @@ public class ActivityService {
         });
     }
 
+    public void getRandomActivityFromDatabase() {
+        mainViewModel.setFetchingActivity(true);
+
+        GetRandomActivityTask task = new GetRandomActivityTask(mainViewModel.getApplication());
+        task.setOnCompleteListener(new BaseDatabaseTask.OnCompleteListener<Activity>() {
+            @Override
+            public void onSuccess(@Nullable Activity activity) {
+                if (activity != null) {
+                    mainViewModel.setRandomActivity(activity);
+                } else {
+                    getConnectToInternetActivity();
+                }
+            }
+
+            @Override
+            public void onFailure(@Nullable Exception e) {
+                mainViewModel.setRandomActivity(null);
+            }
+
+            @Override
+            public void onComplete() {
+                mainViewModel.setFetchingActivity(false);
+            }
+        });
+        task.execute(mainViewModel.getRandomActivity().getValue());
+    }
 
     private void getConnectToInternetActivity() {
         Activity activity = new Activity(mainViewModel.getApplication()
@@ -156,7 +183,8 @@ public class ActivityService {
                 0.1f,
                 "",
                 NO_INTERNET_KEY);
-        getDatabasedActivity(activity);
+
+        mainViewModel.setRandomActivity(activity);
     }
 
     private void getDatabasedActivity(@NonNull Activity activityFromAPI) {

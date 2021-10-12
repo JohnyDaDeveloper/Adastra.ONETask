@@ -25,6 +25,9 @@ public interface ActivityDao {
     @Update
     void update(Activity activity);
 
+    @Query("SELECT * FROM Activity WHERE `key` != :key ORDER BY RANDOM() LIMIT 1")
+    Activity getRandom(String key);
+
     @Query("SELECT * FROM Activity ORDER BY RANDOM() LIMIT 1")
     Activity getRandom();
 }
