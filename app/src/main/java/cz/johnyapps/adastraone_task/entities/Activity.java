@@ -2,7 +2,6 @@ package cz.johnyapps.adastraone_task.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -24,9 +23,6 @@ public class Activity {
     @NonNull
     @PrimaryKey
     private String key;
-
-    @Ignore
-    private boolean online = false;
 
     public Activity(@NonNull String activity,
                     float accessibility,
@@ -107,14 +103,6 @@ public class Activity {
         this.key = key;
     }
 
-    public boolean isOnline() {
-        return online;
-    }
-
-    public void setOnline(boolean online) {
-        this.online = online;
-    }
-
     public boolean isLiked() {
         return liked;
     }
@@ -131,7 +119,6 @@ public class Activity {
         Activity activity1 = (Activity) o;
 
         if (liked != activity1.liked) return false;
-        if (online != activity1.online) return false;
         if (!activity.equals(activity1.activity)) return false;
         if (!accessibility.equals(activity1.accessibility)) return false;
         if (!type.equals(activity1.type)) return false;
@@ -151,7 +138,6 @@ public class Activity {
         result = 31 * result + link.hashCode();
         result = 31 * result + (liked ? 1 : 0);
         result = 31 * result + key.hashCode();
-        result = 31 * result + (online ? 1 : 0);
         return result;
     }
 }
