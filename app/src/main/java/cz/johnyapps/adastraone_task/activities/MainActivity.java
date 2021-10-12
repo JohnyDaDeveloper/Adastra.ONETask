@@ -1,18 +1,10 @@
 package cz.johnyapps.adastraone_task.activities;
 
-import android.os.Bundle;
-
 import cz.johnyapps.adastraone_task.R;
 
-public class MainActivity extends NavigationActivity {
-
+public class MainActivity extends BottomNavigationActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+    public int[] getFragmentIds() {
+        return new int[]{R.id.randomActivityFragment, R.id.allActivitiesFragment};
     }
 }

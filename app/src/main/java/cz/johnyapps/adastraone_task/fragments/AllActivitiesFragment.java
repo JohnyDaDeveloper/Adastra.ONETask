@@ -46,6 +46,7 @@ public class AllActivitiesFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         adapter = null;
+        binding = null;
     }
 
     private void setupActivitiesRecycler(@NonNull FragmentAllActivitiesBinding binding) {
