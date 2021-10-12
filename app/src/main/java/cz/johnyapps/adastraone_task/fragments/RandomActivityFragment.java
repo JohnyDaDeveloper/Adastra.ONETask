@@ -11,55 +11,51 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import cz.johnyapps.adastraone_task.databinding.FragmentRandomActivityBinding;
 import cz.johnyapps.adastraone_task.entities.Type;
 import cz.johnyapps.adastraone_task.services.ActivityService;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 import cz.johnyapps.adastraone_task.R;
-import cz.johnyapps.adastraone_task.databinding.FragmnetRandomActivityBinding;
 import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.tools.Logger;
 
-public class RandomActivityFragment extends Fragment {
+public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityBinding, MainViewModel> {
     @NonNull
     private static final String TAG = "RandomActivityFragment";
     private static final int MAX_PROGRESS = 100;
 
-    private MainViewModel viewModel;
-
-    @Nullable
-    private FragmnetRandomActivityBinding binding;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        setupViewModel();
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
-    @Nullable
+    @NonNull
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmnetRandomActivityBinding.inflate(inflater);
-        binding.randomActivityButton.setOnClickListener(v -> viewModel.getActivityService().getRandomActivityFromAPI());
+    protected MainViewModel setupViewModel(@NonNull ViewModelProvider provider) {
+        return provider.get(MainViewModel.class);
+    }
+
+    @Override
+    public void onCreateView(@NonNull FragmentRandomActivityBinding binding) {
+        binding.randomActivityButton.setOnClickListener(v -> requireViewModel().getActivityService().getRandomActivityFromAPI());
         binding.accessibilityProgress.setMax(MAX_PROGRESS);
         setupObservers();
-        return binding.getRoot();
     }
 
+    @NonNull
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
+    protected FragmentRandomActivityBinding inflateBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentRandomActivityBinding.inflate(inflater);
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.random_activity_fragment_options_menu, menu);
 
-        Activity activity = viewModel.getRandomActivity().getValue();
+        Activity activity = requireViewModel().getRandomActivity().getValue();
         MenuItem likeActivityMenuItem = menu.findItem(R.id.likeActivityMenuItem);
         MenuItem unlikeActivityMenuItem = menu.findItem(R.id.unlikeActivityMenuItem);
 
@@ -92,28 +88,26 @@ public class RandomActivityFragment extends Fragment {
     private void likeActivity(@NonNull Activity activity) {
         activity.setLiked(true);
         requireActivity().invalidateOptionsMenu();
-        viewModel.getActivityService().updateActivity(activity);
+        requireViewModel().getActivityService().updateActivity(activity);
     }
 
     private void unlikeActivity(@NonNull Activity activity) {
         activity.setLiked(false);
         requireActivity().invalidateOptionsMenu();
-        viewModel.getActivityService().updateActivity(activity);
-    }
-
-    private void setupViewModel() {
-        ViewModelProvider provider = new ViewModelProvider(requireActivity());
-        viewModel = provider.get(MainViewModel.class);
+        requireViewModel().getActivityService().updateActivity(activity);
     }
 
     private void setupObservers() {
-        viewModel.getRandomActivity().observe(getViewLifecycleOwner(), activity -> {
+        requireViewModel().getRandomActivity().observe(getViewLifecycleOwner(), activity -> {
             fillActivity(activity);
             requireActivity().invalidateOptionsMenu();
         });
-        viewModel.getFetchingActivity().observe(getViewLifecycleOwner(), aBoolean -> {
+        requireViewModel().getFetchingActivity().observe(getViewLifecycleOwner(), aBoolean -> {
+            FragmentRandomActivityBinding binding = getBinding();
+
             if (binding == null) {
                 Logger.w(TAG, "setupObservers: Binding is null");
+                return;
             }
 
             boolean b = aBoolean != null && !aBoolean;
@@ -123,8 +117,10 @@ public class RandomActivityFragment extends Fragment {
     }
 
     private void fillActivity(@Nullable Activity activity) {
+        FragmentRandomActivityBinding binding = getBinding();
         if (binding == null) {
             Logger.w(TAG, "fillActivity: Binding is null");
+            return;
         }
 
         if (activity != null) {

@@ -1,14 +1,11 @@
 package cz.johnyapps.adastraone_task.fragments;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,33 +17,32 @@ import cz.johnyapps.adastraone_task.databinding.FragmentAllActivitiesBinding;
 import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 
-public class AllActivitiesFragment extends Fragment {
-    @Nullable
-    private FragmentAllActivitiesBinding binding;
-    private MainViewModel viewModel;
+public class AllActivitiesFragment extends BaseFragment<FragmentAllActivitiesBinding, MainViewModel> {
     @Nullable
     private ActivityAdapter adapter;
 
+    @NonNull
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setupViewModel();
+    protected MainViewModel setupViewModel(@NonNull ViewModelProvider provider) {
+        return provider.get(MainViewModel.class);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentAllActivitiesBinding.inflate(inflater, container, false);
+    public void onCreateView(@NonNull FragmentAllActivitiesBinding binding) {
         setupActivitiesRecycler(binding);
         setupObservers();
-        return binding.getRoot();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         adapter = null;
-        binding = null;
+    }
+
+    @NonNull
+    @Override
+    protected FragmentAllActivitiesBinding inflateBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentAllActivitiesBinding.inflate(inflater, container, false);
     }
 
     private void setupActivitiesRecycler(@NonNull FragmentAllActivitiesBinding binding) {
@@ -60,13 +56,8 @@ public class AllActivitiesFragment extends Fragment {
         binding.allActivitiesRecyclerView.setAdapter(adapter);
     }
 
-    private void setupViewModel() {
-        ViewModelProvider provider = new ViewModelProvider(requireActivity());
-        viewModel = provider.get(MainViewModel.class);
-    }
-
     private void setupObservers() {
-        viewModel.getAllActivitiesLiveData().observe(getViewLifecycleOwner(), listLiveData -> {
+        requireViewModel().getAllActivitiesLiveData().observe(getViewLifecycleOwner(), listLiveData -> {
             if (listLiveData != null) {
                 listLiveData.observe(getViewLifecycleOwner(), activitiesObserver);
             } else if (adapter != null) {
