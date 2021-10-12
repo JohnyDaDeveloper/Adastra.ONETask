@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="light_colorPrimary">#158520</color>
-    <color name="light_colorPrimaryVariant">#096E3E</color>
+    <color name="light_colorPrimary">#4CAF50</color>
+    <color name="light_colorPrimaryVariant">#2E7D32</color>
 
-    <color name="light_colorSecondary">#0E9CC8</color>
-    <color name="light_colorSecondaryVariant">#086683</color>
+    <color name="light_colorSecondary">#009688</color>
+    <color name="light_colorSecondaryVariant">#00695C</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorTypeBusywork">#6A6A6A</color>
-    <color name="colorTypeCharity">#8A0000</color>
-    <color name="colorTypeCooking">#6A6A6A</color>
-    <color name="colorTypeEducational">#0F68B5</color>
-    <color name="colorTypeMusic">#8C871D</color>
-    <color name="colorTypeRecreational">#108116</color>
+    <color name="colorTypeCharity">#B71C1C</color>
+    <color name="colorTypeCooking">#8E8E8E</color>
+    <color name="colorTypeEducational">#2196F3</color>
+    <color name="colorTypeMusic">#F44336</color>
+    <color name="colorTypeRecreational">#4CAF50</color>
     <color name="colorTypeRelaxation">#8E610B</color>
+    <color name="colorTypeSocial">#FFC107</color>
 </resources>

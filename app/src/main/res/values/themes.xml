@@ -16,7 +16,7 @@
         <item name="colorTypeMusic">@color/colorTypeMusic</item>
         <item name="colorTypeRecreational">@color/colorTypeRecreational</item>
         <item name="colorTypeRelaxation">@color/colorTypeRelaxation</item>
-        <item name="colorTypeSocial">?colorControlNormal</item>
+        <item name="colorTypeSocial">@color/colorTypeSocial</item>
 
         <item name="drawerArrowStyle">@style/Theme.AdastraONETask.ArrowStyle</item>
         <item name="overlapAnchor">false</item>
