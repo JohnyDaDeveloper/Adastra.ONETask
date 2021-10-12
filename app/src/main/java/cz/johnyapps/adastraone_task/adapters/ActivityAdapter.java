@@ -1,18 +1,18 @@
 package cz.johnyapps.adastraone_task.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
 import cz.johnyapps.adastraone_task.databinding.ItemActivityBinding;
 import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.entities.Type;
 
-public class ActivityAdapter extends ListAdapter<Activity, ActivityAdapter.ActivityViewHolder> {
+public class ActivityAdapter extends ExpandableListAdapter<Activity, ActivityAdapter.ActivityViewHolder> {
+
     public ActivityAdapter() {
         super(DIFF_CALLBACK);
     }
@@ -26,11 +26,12 @@ public class ActivityAdapter extends ListAdapter<Activity, ActivityAdapter.Activ
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position, boolean expanded) {
         holder.bindTo(getItem(position));
+        holder.setExpanded(expanded);
     }
 
-    public static class ActivityViewHolder extends RecyclerView.ViewHolder {
+    public class ActivityViewHolder extends ExpandableListAdapter<Activity, ActivityViewHolder>.ExpandableViewHolder {
         @NonNull
         private final ItemActivityBinding binding;
 
@@ -43,6 +44,15 @@ public class ActivityAdapter extends ListAdapter<Activity, ActivityAdapter.Activ
             Type type = Type.fromString(activity.getType());
             binding.activityTypeImageView.setImageResource(type.getDrawableId());
             binding.activityNameTextView.setText(activity.getActivity());
+            binding.topPartLayout.setOnClickListener(v -> binding.getRoot().performClick());
+        }
+
+        public void setExpanded(boolean expanded) {
+            if (expanded) {
+                binding.expandableLayout.getRoot().setVisibility(View.VISIBLE);
+            } else {
+                binding.expandableLayout.getRoot().setVisibility(View.GONE);
+            }
         }
     }
 

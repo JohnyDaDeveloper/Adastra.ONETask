@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/topPartLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="?spacingDefault"
-        android:clickable="true"
-        android:focusable="true"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
         android:background="?selectableItemBackground">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -30,8 +30,7 @@
             android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?colorDivider" />
+    <include android:id="@+id/expandable_layout"
+        layout="@layout/item_activity_expandable"
+        android:visibility="gone" />
 </androidx.appcompat.widget.LinearLayoutCompat>
