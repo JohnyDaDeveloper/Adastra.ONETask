@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import cz.johnyapps.adastraone_task.entities.Activity;
+import cz.johnyapps.adastraone_task.entities.Type;
 import cz.johnyapps.adastraone_task.services.ActivityService;
 
 public class MainViewModel extends AndroidViewModel {
@@ -35,6 +36,16 @@ public class MainViewModel extends AndroidViewModel {
         }
 
         activityService.getAllAndAllLikedActivitiesFromDatabase();
+    }
+
+    public void getRandomActivityWithSameTypeAsSelected() {
+        Activity selected = selectedActivity.getValue();
+
+        if (selected != null && !Type.fromString(selected.getType()).isCustom()) {
+            activityService.getRandomActivityFromAPI(selected.getType());
+        } else {
+            activityService.getRandomActivityFromAPI();
+        }
     }
 
     @NonNull

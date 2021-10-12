@@ -139,16 +139,17 @@ public class ActivityService {
         task.execute(key);
     }
 
-    public void getRandomActivityFromAPI() {
+    public void getRandomActivityFromAPI(@NonNull String type) {
         mainViewModel.setFetchingActivity(true);
 
-        Call<Activity> call = boredAPIService.getRandomActivity();
+        Call<Activity> call = boredAPIService.getRandomActivity(type);
         call.enqueue(new Callback<Activity>() {
             @Override
             public void onResponse(@NonNull Call<Activity> call, @NonNull Response<Activity> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Activity activity = response.body();
-                    getDatabasedActivity(activity);
+                    getDatabasedActivityOrPassThis(activity);
+                    mainViewModel.setFetchingActivity(false);
                 } else if (response.body() == null) {
                     Logger.w(TAG, "onResponse: Body is null");
                     mainViewModel.setSelectedActivity(null);
@@ -163,7 +164,7 @@ public class ActivityService {
             @Override
             public void onFailure(@NonNull Call<Activity> call, @NonNull Throwable t) {
                 if (t instanceof UnknownHostException) {
-                    getRandomActivityFromDatabase();
+                    getRandomActivityFromDatabase(type);
                 } else {
                     Logger.e(TAG, "onFailure: ", t);
                     mainViewModel.setSelectedActivity(null);
@@ -173,10 +174,44 @@ public class ActivityService {
         });
     }
 
-    public void getRandomActivityFromDatabase() {
+    public void getRandomActivityFromAPI() {
         mainViewModel.setFetchingActivity(true);
 
-        GetRandomActivityTask task = new GetRandomActivityTask(mainViewModel.getApplication());
+        Call<Activity> call = boredAPIService.getRandomActivity();
+        call.enqueue(new Callback<Activity>() {
+            @Override
+            public void onResponse(@NonNull Call<Activity> call, @NonNull Response<Activity> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Activity activity = response.body();
+                    getDatabasedActivityOrPassThis(activity);
+                } else if (response.body() == null) {
+                    Logger.w(TAG, "onResponse: Body is null");
+                    mainViewModel.setSelectedActivity(null);
+                    mainViewModel.setFetchingActivity(false);
+                } else {
+                    Logger.w(TAG, "onResponse: Error: %s", response.message());
+                    mainViewModel.setSelectedActivity(null);
+                    mainViewModel.setFetchingActivity(false);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Activity> call, @NonNull Throwable t) {
+                if (t instanceof UnknownHostException) {
+                    getRandomActivityFromDatabase(null);
+                } else {
+                    Logger.e(TAG, "onFailure: ", t);
+                    mainViewModel.setSelectedActivity(null);
+                    mainViewModel.setFetchingActivity(false);
+                }
+            }
+        });
+    }
+
+    public void getRandomActivityFromDatabase(@Nullable String type) {
+        mainViewModel.setFetchingActivity(true);
+
+        GetRandomActivityTask task = new GetRandomActivityTask(mainViewModel.getApplication(), type);
         task.setOnCompleteListener(new BaseDatabaseTask.OnCompleteListener<Activity>() {
             @Override
             public void onSuccess(@Nullable Activity activity) {
@@ -214,7 +249,7 @@ public class ActivityService {
         mainViewModel.setSelectedActivity(activity);
     }
 
-    private void getDatabasedActivity(@NonNull Activity activityFromAPI) {
+    private void getDatabasedActivityOrPassThis(@NonNull Activity activityFromAPI) {
         getActivityFromDatabase(activityFromAPI.getKey(), new BaseDatabaseTask.OnCompleteListener<Activity>() {
             @Override
             public void onSuccess(@Nullable Activity activity) {

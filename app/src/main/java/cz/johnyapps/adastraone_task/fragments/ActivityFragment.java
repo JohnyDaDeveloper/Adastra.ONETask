@@ -42,6 +42,7 @@ public class ActivityFragment extends BaseFragment<FragmentActivityBinding, Main
     public void onCreateView(@NonNull FragmentActivityBinding binding) {
         binding.randomActivityButton.setOnClickListener(v -> requireViewModel().getActivityService().getRandomActivityFromAPI());
         binding.accessibilityProgress.setMax(MAX_PROGRESS);
+        binding.typeImageView.setOnClickListener(v -> randomActivityWithSameTypeAsSelected());
         setupObservers();
     }
 
@@ -83,6 +84,13 @@ public class ActivityFragment extends BaseFragment<FragmentActivityBinding, Main
         }
 
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void randomActivityWithSameTypeAsSelected() {
+        Boolean fetching = requireViewModel().getFetchingActivity().getValue();
+        if (fetching == null || !fetching) {
+            requireViewModel().getRandomActivityWithSameTypeAsSelected();
+        }
     }
 
     private void likeActivity(@NonNull Activity activity) {

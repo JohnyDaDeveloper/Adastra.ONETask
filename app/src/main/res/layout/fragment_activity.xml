@@ -12,31 +12,27 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="?spacingDefault"
-            android:padding="?spacingDefault"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="?spacingDefault">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginBottom="?spacingDefault">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/typeImageView"
                     android:layout_width="48dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="?spacingDefault"
-                    android:layout_marginBottom="?spacingDefault"
-                    android:foregroundGravity="center"
-                    android:minHeight="48dp"
-                    android:visibility="gone"
                     app:srcCompat="@drawable/type_unknown" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/activityNameTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="?spacingDefault"
                     android:gravity="center_vertical"
                     android:minLines="2"
                     android:text="@string/activityNameTextView_default"
