@@ -2,6 +2,7 @@
     <string name="app_name">Adastra.ONE - Task</string>
 
     <string name="fragment_random_activity">Random activity</string>
+    <string name="fragment_all_activities">All activities</string>
 
     <string name="menu_header_text">Menu</string>
 

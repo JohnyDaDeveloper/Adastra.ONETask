@@ -8,6 +8,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.services.ActivityService;
 
@@ -19,6 +21,8 @@ public class MainViewModel extends AndroidViewModel {
     private final MutableLiveData<Activity> randomActivity = new MutableLiveData<>();
     @NonNull
     private final MutableLiveData<Boolean> fetchingActivity = new MutableLiveData<>();
+    @NonNull
+    private final MutableLiveData<LiveData<List<Activity>>> allActivitiesLiveData = new MutableLiveData<>();
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -27,6 +31,8 @@ public class MainViewModel extends AndroidViewModel {
         if (activityService.getLastActivityFromDatabase()) {
             activityService.getRandomActivityFromAPI();
         }
+
+        activityService.getAllActivitiesFromDatabase();
     }
 
     @NonNull
@@ -50,5 +56,14 @@ public class MainViewModel extends AndroidViewModel {
     @NonNull
     public ActivityService getActivityService() {
         return activityService;
+    }
+
+    @NonNull
+    public LiveData<LiveData<List<Activity>>> getAllActivitiesLiveData() {
+        return allActivitiesLiveData;
+    }
+
+    public void setAllActivitiesLiveData(@NonNull LiveData<List<Activity>> allActivitiesLiveData) {
+        this.allActivitiesLiveData.setValue(allActivitiesLiveData);
     }
 }

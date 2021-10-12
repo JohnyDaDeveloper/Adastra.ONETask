@@ -2,9 +2,13 @@ package cz.johnyapps.adastraone_task.services;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
 
 import cz.johnyapps.adastraone_task.database.tasks.BaseDatabaseTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetActivityTask;
+import cz.johnyapps.adastraone_task.database.tasks.GetAllActivitiesTask;
 import cz.johnyapps.adastraone_task.database.tasks.InsertActivityTask;
 import cz.johnyapps.adastraone_task.tools.Logger;
 import cz.johnyapps.adastraone_task.tools.SharedPreferencesUtils;
@@ -34,6 +38,27 @@ public class ActivityService {
                 .build();
 
         boredAPIService = retrofit.create(BoredAPIService.class);
+    }
+
+    public void getAllActivitiesFromDatabase() {
+        GetAllActivitiesTask task = new GetAllActivitiesTask(mainViewModel.getApplication());
+        task.setOnCompleteListener(new BaseDatabaseTask.OnCompleteListener<LiveData<List<Activity>>>() {
+            @Override
+            public void onSuccess(@Nullable LiveData<List<Activity>> listLiveData) {
+                mainViewModel.setAllActivitiesLiveData(listLiveData);
+            }
+
+            @Override
+            public void onFailure(@Nullable Exception e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+        task.execute();
     }
 
     public boolean getLastActivityFromDatabase() {

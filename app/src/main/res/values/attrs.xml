@@ -4,4 +4,5 @@
 
     <attr name="colorToolbar" format="color" />
     <attr name="colorOnToolbar" format="color" />
+    <attr name="colorDivider" format="color" />
 </resources>

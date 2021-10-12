@@ -9,4 +9,9 @@
         android:name="cz.johnyapps.adastraone_task.fragments.RandomActivityFragment"
         android:label="@string/fragment_random_activity"
         tools:layout="@layout/fragmnet_random_activity" />
+
+    <fragment android:id="@+id/allActivitiesFragment"
+        android:name="cz.johnyapps.adastraone_task.fragments.AllActivitiesFragment"
+        android:label="@string/fragment_all_activities"
+        tools:layout="@layout/fragment_all_activities" />
 </navigation>

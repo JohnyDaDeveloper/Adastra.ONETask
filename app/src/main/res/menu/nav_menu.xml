@@ -3,4 +3,8 @@
     <item android:id="@+id/randomActivityFragment"
         android:title="@string/fragment_random_activity"
         android:icon="@drawable/fragment_random" />
+
+    <item android:id="@+id/allActivitiesFragment"
+        android:title="@string/fragment_all_activities"
+        android:icon="@drawable/fragment_all_activities" />
 </menu>

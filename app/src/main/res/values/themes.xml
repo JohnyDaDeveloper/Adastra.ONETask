@@ -4,11 +4,12 @@
 
         <item name="colorToolbar">?colorPrimary</item>
         <item name="colorOnToolbar">?colorOnPrimary</item>
-
         <item name="android:statusBarColor" tools:targetApi="l">?colorToolbar</item>
 
         <item name="drawerArrowStyle">@style/Theme.AdastraONETask.ArrowStyle</item>
         <item name="overlapAnchor">false</item>
+
+        <item name="colorDivider">?colorOnSurface</item>
     </style>
 
     <style name="Theme.AdastraONETask.Default" parent="Theme.AdastraONETask.Base">
