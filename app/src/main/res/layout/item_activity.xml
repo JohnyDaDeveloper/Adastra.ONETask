@@ -3,34 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:padding="?spacingDefault"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?selectableItemBackground">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/topPartLayout"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/activityTypeImageView"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:srcCompat="@drawable/type_unknown"
+        android:layout_marginEnd="?spacingDefault"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/activityNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="?spacingDefault"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?selectableItemBackground">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/activityTypeImageView"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            app:srcCompat="@drawable/type_unknown"
-            android:layout_marginEnd="?spacingDefault"/>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/activityNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <include android:id="@+id/expandable_layout"
-        layout="@layout/item_activity_expandable"
-        android:visibility="gone" />
+        android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
 </androidx.appcompat.widget.LinearLayoutCompat>

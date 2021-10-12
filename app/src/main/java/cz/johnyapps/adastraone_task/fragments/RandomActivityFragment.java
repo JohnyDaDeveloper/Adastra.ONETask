@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import cz.johnyapps.adastraone_task.entities.Type;
+import cz.johnyapps.adastraone_task.services.ActivityService;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
 import cz.johnyapps.adastraone_task.R;
 import cz.johnyapps.adastraone_task.databinding.FragmnetRandomActivityBinding;
@@ -62,7 +63,7 @@ public class RandomActivityFragment extends Fragment {
         MenuItem likeActivityMenuItem = menu.findItem(R.id.likeActivityMenuItem);
         MenuItem unlikeActivityMenuItem = menu.findItem(R.id.unlikeActivityMenuItem);
 
-        if (activity != null) {
+        if (activity != null && !activity.getKey().equals(ActivityService.NO_INTERNET_KEY)) {
             likeActivityMenuItem.setOnMenuItemClickListener(item -> {
                 likeActivity(activity);
                 return false;

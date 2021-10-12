@@ -29,7 +29,7 @@ public class ActivityService {
     @NonNull
     private static final String TAG = "ActivityService";
     @NonNull
-    private static final String NO_INTERNET_KEY = "no internet :(";
+    public static final String NO_INTERNET_KEY = "no internet :(";
 
     @NonNull
     private final MainViewModel mainViewModel;
