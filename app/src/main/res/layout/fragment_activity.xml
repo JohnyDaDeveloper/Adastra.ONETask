@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomLayout">
@@ -85,7 +85,7 @@
                 android:autoLink="web"
                 android:textAppearance="@style/TextAppearance.AdastraONETask.Small" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/bottomLayout"
@@ -100,9 +100,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="?spacingDefault"
+            android:indeterminate="true"
             android:visibility="gone"
-            app:indicatorSize="24dp"
-            android:indeterminate="true" />
+            app:indicatorSize="24dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/randomActivityButton"
@@ -112,6 +112,7 @@
             android:layout_margin="?spacingDefault"
             android:padding="?spacingDefault"
             android:text="@string/randomActivityButton"
+            app:icon="@drawable/random"
             android:textAllCaps="false" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

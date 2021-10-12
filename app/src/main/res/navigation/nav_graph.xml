@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/randomActivityFragment">
+    app:startDestination="@id/activityFragment">
 
-    <fragment android:id="@+id/randomActivityFragment"
-        android:name="cz.johnyapps.adastraone_task.fragments.RandomActivityFragment"
-        android:label="@string/fragment_random_activity"
-        tools:layout="@layout/fragment_random_activity" />
+    <fragment android:id="@+id/activityFragment"
+        android:name="cz.johnyapps.adastraone_task.fragments.ActivityFragment"
+        android:label="@string/fragment_activity"
+        tools:layout="@layout/fragment_activity" />
 
     <fragment android:id="@+id/likedActivitiesFragment"
         android:name="cz.johnyapps.adastraone_task.fragments.LikedActivitiesFragment"

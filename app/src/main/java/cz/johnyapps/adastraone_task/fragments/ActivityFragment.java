@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import cz.johnyapps.adastraone_task.databinding.FragmentRandomActivityBinding;
+import cz.johnyapps.adastraone_task.databinding.FragmentActivityBinding;
 import cz.johnyapps.adastraone_task.entities.Type;
 import cz.johnyapps.adastraone_task.services.ActivityService;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
@@ -21,9 +21,9 @@ import cz.johnyapps.adastraone_task.R;
 import cz.johnyapps.adastraone_task.entities.Activity;
 import cz.johnyapps.adastraone_task.tools.Logger;
 
-public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityBinding, MainViewModel> {
+public class ActivityFragment extends BaseFragment<FragmentActivityBinding, MainViewModel> {
     @NonNull
-    private static final String TAG = "RandomActivityFragment";
+    private static final String TAG = "ActivityFragment";
     private static final int MAX_PROGRESS = 100;
 
     @Override
@@ -39,7 +39,7 @@ public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityB
     }
 
     @Override
-    public void onCreateView(@NonNull FragmentRandomActivityBinding binding) {
+    public void onCreateView(@NonNull FragmentActivityBinding binding) {
         binding.randomActivityButton.setOnClickListener(v -> requireViewModel().getActivityService().getRandomActivityFromAPI());
         binding.accessibilityProgress.setMax(MAX_PROGRESS);
         setupObservers();
@@ -47,13 +47,13 @@ public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityB
 
     @NonNull
     @Override
-    protected FragmentRandomActivityBinding inflateBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        return FragmentRandomActivityBinding.inflate(inflater);
+    protected FragmentActivityBinding inflateBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FragmentActivityBinding.inflate(inflater);
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.random_activity_fragment_options_menu, menu);
+        inflater.inflate(R.menu.activity_fragment_options_menu, menu);
 
         Activity activity = requireViewModel().getRandomActivity().getValue();
         MenuItem likeActivityMenuItem = menu.findItem(R.id.likeActivityMenuItem);
@@ -103,7 +103,7 @@ public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityB
             requireActivity().invalidateOptionsMenu();
         });
         requireViewModel().getFetchingActivity().observe(getViewLifecycleOwner(), aBoolean -> {
-            FragmentRandomActivityBinding binding = getBinding();
+            FragmentActivityBinding binding = getBinding();
 
             if (binding == null) {
                 Logger.w(TAG, "setupObservers: Binding is null");
@@ -117,7 +117,7 @@ public class RandomActivityFragment extends BaseFragment<FragmentRandomActivityB
     }
 
     private void fillActivity(@Nullable Activity activity) {
-        FragmentRandomActivityBinding binding = getBinding();
+        FragmentActivityBinding binding = getBinding();
         if (binding == null) {
             Logger.w(TAG, "fillActivity: Binding is null");
             return;
