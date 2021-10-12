@@ -115,7 +115,9 @@ public class RandomActivityFragment extends Fragment {
                 Logger.w(TAG, "setupObservers: Binding is null");
             }
 
-            binding.randomActivityButton.setEnabled(aBoolean != null && !aBoolean);
+            boolean b = aBoolean != null && !aBoolean;
+            binding.randomActivityButton.setEnabled(b);
+            binding.getActivityProgress.setVisibility(b ? View.GONE : View.VISIBLE);
         });
     }
 
