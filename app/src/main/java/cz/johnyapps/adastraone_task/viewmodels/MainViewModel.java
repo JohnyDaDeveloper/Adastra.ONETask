@@ -23,6 +23,8 @@ public class MainViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> fetchingActivity = new MutableLiveData<>();
     @NonNull
     private final MutableLiveData<LiveData<List<Activity>>> allActivitiesLiveData = new MutableLiveData<>();
+    @NonNull
+    private final MutableLiveData<LiveData<List<Activity>>> likedActivitiesLiveData = new MutableLiveData<>();
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -32,7 +34,7 @@ public class MainViewModel extends AndroidViewModel {
             activityService.getRandomActivityFromAPI();
         }
 
-        activityService.getAllActivitiesFromDatabase();
+        activityService.getAllAndAllLikedActivitiesFromDatabase();
     }
 
     @NonNull
@@ -65,5 +67,14 @@ public class MainViewModel extends AndroidViewModel {
 
     public void setAllActivitiesLiveData(@Nullable LiveData<List<Activity>> allActivitiesLiveData) {
         this.allActivitiesLiveData.setValue(allActivitiesLiveData);
+    }
+
+    @NonNull
+    public LiveData<LiveData<List<Activity>>> getLikedActivitiesLiveData() {
+        return likedActivitiesLiveData;
+    }
+
+    public void setLikedActivitiesLiveData(@Nullable LiveData<List<Activity>> likedActivitiesLiveData) {
+        this.likedActivitiesLiveData.setValue(likedActivitiesLiveData);
     }
 }

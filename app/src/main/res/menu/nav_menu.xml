@@ -4,6 +4,10 @@
         android:title="@string/fragment_random_activity"
         android:icon="@drawable/fragment_random" />
 
+    <item android:id="@+id/likedActivitiesFragment"
+        android:title="@string/fragment_liked_activities"
+        android:icon="@drawable/fragment_liked" />
+
     <item android:id="@+id/allActivitiesFragment"
         android:title="@string/fragment_all_activities"
         android:icon="@drawable/fragment_all_activities" />

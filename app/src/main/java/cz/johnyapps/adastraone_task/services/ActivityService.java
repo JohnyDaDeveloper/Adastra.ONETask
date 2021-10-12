@@ -11,6 +11,7 @@ import cz.johnyapps.adastraone_task.R;
 import cz.johnyapps.adastraone_task.database.tasks.BaseDatabaseTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetAllActivitiesTask;
+import cz.johnyapps.adastraone_task.database.tasks.GetAllLikedActivitiesTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetRandomActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.InsertActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.UpdateActivityTask;
@@ -50,6 +51,32 @@ public class ActivityService {
     public void updateActivity(@Nullable Activity activity) {
         UpdateActivityTask task = new UpdateActivityTask(mainViewModel.getApplication());
         task.execute(activity);
+    }
+
+    public void getAllAndAllLikedActivitiesFromDatabase() {
+        getAllActivitiesFromDatabase();
+        getAllLikedActivitiesFromDatabase();
+    }
+
+    public void getAllLikedActivitiesFromDatabase() {
+        GetAllLikedActivitiesTask task = new GetAllLikedActivitiesTask(mainViewModel.getApplication());
+        task.setOnCompleteListener(new BaseDatabaseTask.OnCompleteListener<LiveData<List<Activity>>>() {
+            @Override
+            public void onSuccess(@Nullable LiveData<List<Activity>> listLiveData) {
+                mainViewModel.setLikedActivitiesLiveData(listLiveData);
+            }
+
+            @Override
+            public void onFailure(@Nullable Exception e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+        task.execute();
     }
 
     public void getAllActivitiesFromDatabase() {

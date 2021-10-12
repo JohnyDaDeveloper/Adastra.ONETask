@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Adastra.ONE - Task</string>
 
-    <string name="fragment_random_activity">Random activity</string>
-    <string name="fragment_all_activities">All activities</string>
+    <string name="fragment_random_activity">Random</string>
+    <string name="fragment_all_activities">All</string>
+    <string name="fragment_liked_activities">Liked</string>
 
     <string name="menu_item_like_activity">Like activity</string>
     <string name="menu_item_unlike_activity">Remove like</string>

@@ -22,6 +22,9 @@ public interface ActivityDao {
     @Query("SELECT * FROM Activity")
     LiveData<List<Activity>> getAll();
 
+    @Query("SELECT * FROM Activity WHERE liked = 1")
+    LiveData<List<Activity>> getAllLiked();
+
     @Update
     void update(Activity activity);
 
