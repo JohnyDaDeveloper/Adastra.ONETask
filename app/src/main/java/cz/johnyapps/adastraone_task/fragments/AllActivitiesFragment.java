@@ -66,8 +66,13 @@ public class AllActivitiesFragment extends Fragment {
     }
 
     private void setupObservers() {
-        viewModel.getAllActivitiesLiveData().observe(getViewLifecycleOwner(), listLiveData ->
-                listLiveData.observe(getViewLifecycleOwner(), activitiesObserver));
+        viewModel.getAllActivitiesLiveData().observe(getViewLifecycleOwner(), listLiveData -> {
+            if (listLiveData != null) {
+                listLiveData.observe(getViewLifecycleOwner(), activitiesObserver);
+            } else if (adapter != null) {
+                adapter.submitList(null);
+            }
+        });
     }
 
     private final Observer<List<Activity>> activitiesObserver = activities -> {

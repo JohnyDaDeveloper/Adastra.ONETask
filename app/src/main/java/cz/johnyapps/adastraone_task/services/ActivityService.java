@@ -10,6 +10,7 @@ import cz.johnyapps.adastraone_task.database.tasks.BaseDatabaseTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetActivityTask;
 import cz.johnyapps.adastraone_task.database.tasks.GetAllActivitiesTask;
 import cz.johnyapps.adastraone_task.database.tasks.InsertActivityTask;
+import cz.johnyapps.adastraone_task.database.tasks.UpdateActivityTask;
 import cz.johnyapps.adastraone_task.tools.Logger;
 import cz.johnyapps.adastraone_task.tools.SharedPreferencesUtils;
 import cz.johnyapps.adastraone_task.viewmodels.MainViewModel;
@@ -38,6 +39,11 @@ public class ActivityService {
                 .build();
 
         boredAPIService = retrofit.create(BoredAPIService.class);
+    }
+
+    public void updateActivity(@Nullable Activity activity) {
+        UpdateActivityTask task = new UpdateActivityTask(mainViewModel.getApplication());
+        task.execute(activity);
     }
 
     public void getAllActivitiesFromDatabase() {

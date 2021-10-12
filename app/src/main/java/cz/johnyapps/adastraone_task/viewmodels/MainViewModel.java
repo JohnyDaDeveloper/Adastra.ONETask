@@ -63,7 +63,7 @@ public class MainViewModel extends AndroidViewModel {
         return allActivitiesLiveData;
     }
 
-    public void setAllActivitiesLiveData(@NonNull LiveData<List<Activity>> allActivitiesLiveData) {
+    public void setAllActivitiesLiveData(@Nullable LiveData<List<Activity>> allActivitiesLiveData) {
         this.allActivitiesLiveData.setValue(allActivitiesLiveData);
     }
 }

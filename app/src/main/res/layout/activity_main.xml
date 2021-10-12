@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="@string/app_name"
-        app:contentInsetStartWithNavigation="0dp"
+        android:background="?colorToolbar"
+        app:titleTextColor="?colorOnToolbar"
         style="@style/Widget.MaterialComponents.Toolbar.Surface" />
 
     <fragment

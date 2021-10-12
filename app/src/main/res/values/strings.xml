@@ -4,6 +4,9 @@
     <string name="fragment_random_activity">Random activity</string>
     <string name="fragment_all_activities">All activities</string>
 
+    <string name="menu_item_like_activity">Like activity</string>
+    <string name="menu_item_unlike_activity">Remove like</string>
+
     <string name="menu_header_text">Menu</string>
 
     <string name="activityNameTextView_default">No activity loaded</string>

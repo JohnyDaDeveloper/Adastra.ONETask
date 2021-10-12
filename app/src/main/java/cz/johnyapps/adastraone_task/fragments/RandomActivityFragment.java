@@ -3,6 +3,9 @@ package cz.johnyapps.adastraone_task.fragments;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,6 +34,7 @@ public class RandomActivityFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setupViewModel();
+        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -50,13 +54,62 @@ public class RandomActivityFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.random_activity_fragment_options_menu, menu);
+
+        Activity activity = viewModel.getRandomActivity().getValue();
+        MenuItem likeActivityMenuItem = menu.findItem(R.id.likeActivityMenuItem);
+        MenuItem unlikeActivityMenuItem = menu.findItem(R.id.unlikeActivityMenuItem);
+
+        if (activity != null) {
+            likeActivityMenuItem.setOnMenuItemClickListener(item -> {
+                likeActivity(activity);
+                return false;
+            });
+
+            unlikeActivityMenuItem.setOnMenuItemClickListener(item -> {
+                unlikeActivity(activity);
+                return false;
+            });
+
+            if (activity.isLiked()) {
+                likeActivityMenuItem.setVisible(false);
+                unlikeActivityMenuItem.setVisible(true);
+            } else {
+                likeActivityMenuItem.setVisible(true);
+                unlikeActivityMenuItem.setVisible(false);
+            }
+        } else {
+            likeActivityMenuItem.setVisible(false);
+            unlikeActivityMenuItem.setVisible(false);
+        }
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void likeActivity(@NonNull Activity activity) {
+        activity.setLiked(true);
+        requireActivity().invalidateOptionsMenu();
+        viewModel.getActivityService().updateActivity(activity);
+    }
+
+    private void unlikeActivity(@NonNull Activity activity) {
+        activity.setLiked(false);
+        requireActivity().invalidateOptionsMenu();
+        viewModel.getActivityService().updateActivity(activity);
+    }
+
     private void setupViewModel() {
         ViewModelProvider provider = new ViewModelProvider(requireActivity());
         viewModel = provider.get(MainViewModel.class);
     }
 
     private void setupObservers() {
-        viewModel.getRandomActivity().observe(getViewLifecycleOwner(), this::fillActivity);
+        viewModel.getRandomActivity().observe(getViewLifecycleOwner(), activity -> {
+            fillActivity(activity);
+            requireActivity().invalidateOptionsMenu();
+        });
         viewModel.getFetchingActivity().observe(getViewLifecycleOwner(), aBoolean -> {
             if (binding == null) {
                 Logger.w(TAG, "setupObservers: Binding is null");
