@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import cz.johnyapps.adastraone_task.R;
-import cz.johnyapps.adastraone_task.tools.Logger;
 
 public enum Type {
     UNKNOWN(R.drawable.type_unknown),
@@ -17,7 +16,8 @@ public enum Type {
     COOKING(R.drawable.type_cooking),
     RELAXATION(R.drawable.type_relaxation),
     MUSIC(R.drawable.type_music),
-    BUSYWORK(R.drawable.type_busywork);
+    BUSYWORK(R.drawable.type_busywork),
+    CONNECT_TO_INTERNET(R.drawable.type_connect_to_internet);
 
     @DrawableRes
     private final int drawableId;
